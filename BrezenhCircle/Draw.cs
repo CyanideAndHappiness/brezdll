@@ -25,7 +25,7 @@ namespace BrezDraw
         }
 
 
-        private static void SetMyPixel(Graphics g, Color col, int x, int y, int alpha)
+        private static void SetPixel(Graphics g, Color col, int x, int y, int alpha)
         {
             g.FillRectangle(new SolidBrush(Color.FromArgb(alpha, col)), x, y, 1, 1);
         }
@@ -38,10 +38,10 @@ namespace BrezDraw
             double xC = 0, yC = radius, gap = 0, delta = (2 - 2 * radius);
             while (yC >= 0)
             {
-                SetMyPixel(g, clr, (int)(x + xC), (int)(y + yC), 255);
-                SetMyPixel(g, clr, (int)(x + xC), (int)(y - yC), 255);
-                SetMyPixel(g, clr, (int)(x - xC), (int)(y - yC), 255);
-                SetMyPixel(g, clr, (int)(x - xC), (int)(y + yC), 255);
+                SetPixel(g, clr, (int)(x + xC), (int)(y + yC), 255);
+                SetPixel(g, clr, (int)(x + xC), (int)(y - yC), 255);
+                SetPixel(g, clr, (int)(x - xC), (int)(y - yC), 255);
+                SetPixel(g, clr, (int)(x - xC), (int)(y + yC), 255);
                 gap = 2 * (delta + yC) - 1;
                 if (delta < 0 && gap <= 0)
                 {
