@@ -32,7 +32,7 @@ namespace Dynamic_object
 
             Timer timer = new Timer();
             timer.Tick += Timer_Tick;
-            timer.Interval = 50;
+            timer.Interval = 200;
             timer.Enabled = true;
         }
 
@@ -54,8 +54,12 @@ namespace Dynamic_object
             //DrawSnowman(clr, 0f, 0f);
 
             //e.Graphics.DrawImage(_bitmap, 0f, 0f);
+
+            _graphics.SmoothingMode = SmoothingMode.HighQuality;
+
+
+            e.Graphics.DrawImage(_bitmap, 0f, 0f); 
             
-            e.Graphics.DrawImage(_bitmap, 0f, 0f);
         }
 
         private void SnowmanBox_Paint1(object sender, PaintEventArgs e)
@@ -69,19 +73,29 @@ namespace Dynamic_object
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            _x += (float)_random.NextDouble() * 2f - 1f;
-            _y += (float)_random.NextDouble() * 2f - 1f;
-            DrawSnowman(Color.Black);
-            SnowmanBox.Invalidate();
+            //_x += (float)_random.NextDouble() * 2f - 1f;
+            //_y += (float)_random.NextDouble() * 2f - 1f;
+            
+            _x += 20f;
+            _y += 0f;
+           
+            
+                DrawSnowman(Color.Black);
+                SnowmanBox.Invalidate();
+            
 
         }
 
         private void DrawSnowman(Color clr)
         {
-            _graphics.Clear(Color.Azure);
-            Draw.BCircle(_graphics, clr, 120 + _x*2, 75 + _y, 35);
-            Draw.BCircle(_graphics, clr, 120 + _x*2, 155 + _y, 45);
-            Draw.BCircle(_graphics, clr, 120 + _x*2, 270 + _y, 70);
+            
+                _graphics.Clear(Color.Azure);
+
+                Draw.BCircle(_graphics, clr, 120 + _x, 75 + _y, 35);
+                Draw.BCircle(_graphics, clr, 120 + _x, 155 + _y, 45);
+                Draw.BCircle(_graphics, clr, 120 + _x, 270 + _y, 70);
+            
+               
         }
 
         // Bitmap pixel;
