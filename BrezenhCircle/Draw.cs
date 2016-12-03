@@ -16,7 +16,7 @@ namespace BrezDraw
         Bitmap bmp;
         MemoryStream mem;
 
-        private void DrawPixel()
+        public void DrawPixel()
         {
             pixel = new Bitmap(1, 1);
             pixel.SetPixel(0, 0, Color.Black);
