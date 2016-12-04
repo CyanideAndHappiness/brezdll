@@ -51,17 +51,6 @@ namespace Dynamic_object
         private void SnowmanBox_Paint(object sender, PaintEventArgs e)
         {
 
-            //var graphics = _graphics;
-            //var clr = Color.Black;
-
-            //graphics.SmoothingMode = SmoothingMode.HighQuality;
-            //graphics.Clear(Color.AliceBlue);
-
-            //DrawSnowman(clr, 0f, 0f);
-
-            //e.Graphics.DrawImage(_bitmap, 0f, 0f);
-
-            // _graphics.SmoothingMode = SmoothingMode.HighQuality;
 
 
             e.Graphics.DrawImage(_bitmap, 0f, 0f);
@@ -78,7 +67,7 @@ namespace Dynamic_object
 
         private float _vx = 10f;
         private float _x;
-        // private float _y;
+       
 
 
 
@@ -87,15 +76,14 @@ namespace Dynamic_object
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            //_x += (float)_random.NextDouble() * 2f - 1f;
-            //_y += (float)_random.NextDouble() * 2f - 1f;
+            
             if (_x + 120 + 95 > SnowmanBox.Width || _x < 0f)
             {
                 _vx = -_vx;
             }
             
              _x += _vx;
-            //   _y += 0f;
+            
 
 
 
@@ -121,7 +109,7 @@ namespace Dynamic_object
             Draw.BCircle(_graphics, clr, 103 + _x, 65, 4);
             Draw.BCircle(_graphics, clr, 130 + _x, 65, 4);
 
-          //  var pen = new Pen(new SolidBrush(clr), 1.5f);
+          
 
             _graphics.DrawLine(blackPen, 120 + _x + 45, 155, 120 + _x + 45 + 50, 155 - 50);
             _graphics.DrawLine(blackPen, 120 + _x - 45, 155, 120 + _x - 45 - 50, 155 - 50);
