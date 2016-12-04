@@ -17,6 +17,7 @@ namespace Dynamic_object
         private Bitmap _bitmap;
         private Graphics _graphics;
         private Random _random = new Random();
+        private Pen p = new Pen(Color.Black);
 
         public Form1()
         {
@@ -34,6 +35,10 @@ namespace Dynamic_object
             timer.Tick += Timer_Tick;
             timer.Interval = 200;
             timer.Enabled = true;
+
+         
+
+
         }
 
         private void SnowmanBox_Resize(object sender, EventArgs e)
@@ -56,82 +61,65 @@ namespace Dynamic_object
             //e.Graphics.DrawImage(_bitmap, 0f, 0f);
 
             _graphics.SmoothingMode = SmoothingMode.HighQuality;
+         
 
+            e.Graphics.DrawImage(_bitmap, 0f, 0f);
+           
+           
 
-            e.Graphics.DrawImage(_bitmap, 0f, 0f); 
-            
         }
 
         private void SnowmanBox_Paint1(object sender, PaintEventArgs e)
         {
 
-            //DrawSnowman(Color.AliceBlue, x, y);
+           
         }
 
         private float _x;
-        private float _y;
+       // private float _y;
+     
+      
+
+        
+        
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             //_x += (float)_random.NextDouble() * 2f - 1f;
             //_y += (float)_random.NextDouble() * 2f - 1f;
-            
+        
+                
             _x += 20f;
-            _y += 0f;
-           
+         //   _y += 0f;
+
+            
             
                 DrawSnowman(Color.Black);
-                SnowmanBox.Invalidate();
+           
+
+            SnowmanBox.Invalidate();
             
 
         }
+
+        
 
         private void DrawSnowman(Color clr)
         {
+           
             
                 _graphics.Clear(Color.Azure);
 
-                Draw.BCircle(_graphics, clr, 120 + _x, 75 + _y, 35);
-                Draw.BCircle(_graphics, clr, 120 + _x, 155 + _y, 45);
-                Draw.BCircle(_graphics, clr, 120 + _x, 270 + _y, 70);
-            
-               
+                Draw.BCircle(_graphics, clr, 120 + _x, 75, 35);
+                Draw.BCircle(_graphics, clr, 120 + _x, 155, 45);
+                Draw.BCircle(_graphics, clr, 120 + _x, 270, 70);
+                Draw.BCircle(_graphics, clr, 103 + _x, 65, 4);
+                Draw.BCircle(_graphics, clr, 130 + _x, 65, 4);
+
         }
 
-        // Bitmap pixel;
-
-        //void myLineBrez(Graphics gr, double x1, double y1)
-        //{
-
-        //    double k, error, x0, y0;
-        //    x0 = 0; y0 = 0;
-        //    error = 0;
-
-        //    while (x0 < x1)
-        //    {
-        //        gr.DrawImage(pixel, (int)x0, (int)y0);
-        //        k = Math.Abs((y1 - y0) / (x1 - x0));
-        //        error = error + k;
-
-        //        if (error < 0.5)
-        //        {
-        //            x0 = x0 + 1;
-        //            gr.DrawImage(pixel, (int)x0, (int)y0);
-        //        }
-
-        //        if (error > 0.5)
-        //        {
-        //            x0 = x0 + 1; y0 = y0 + 1;
-        //            gr.DrawImage(pixel, (int)x0, (int)y0);
-        //            error = error - 1;
-        //        }
-        //        if (error == k)
-        //        {
-        //            gr.DrawImage(pixel, (int)x0, (int)y0);
-        //        }
-        //    }
-        //    return; 
-        //}
+     
+      
 
 
     }
