@@ -9,27 +9,79 @@ using System.IO;
 
 namespace BrezDraw
 {
-    public class Draw
+    public static class Draw
     {
 
-        Bitmap pixel;
-        Bitmap bmp;
-        MemoryStream mem;
-
-        public void DrawPixel()
+        public static void DrawBresenhamLine(Graphics graphics, int x0, int y0, int x1, int y1)
         {
-            pixel = new Bitmap(1, 1);
-            pixel.SetPixel(0, 0, Color.Black);
-            mem = new MemoryStream();
-            bmp = new Bitmap(pixel);
+            bool steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+
+            // Если отрезок под крутым углом, меняем x и y для обеих точек местами
+            if (steep)
+            {
+                Swap(ref x0, ref y0);
+                Swap(ref x1, ref y1);
+            }
+
+            // Если конец отрезка левее начала отрезка, то меняем концы отрезка местами
+            if (x0 > x1)
+            {
+                Swap(ref x0, ref x1);
+                Swap(ref y0, ref y1);
+            }
+
+            // Общее приращение по x
+            int dX = x1 - x0;
+            // Модуль общего приращения по y
+            int dY = Math.Abs(y1 - y0);
+
+            // Ошибка
+            int err = dX / 2;
+
+            // Если линия идёт вверх, то приращение — 1, иначе — -1.
+            int ystep = y0 < y1 ? 1 : -1;
+
+            // Для первого y возьмём начальный y из левого конца отрезка
+            int y = y0;
+
+            // Цикл по x от левого конца отрезка до правого
+            for (int x = x0; x <= x1; ++x)
+            {
+                // Если изначальный отрезок был крутой, то рисуем точку в (y,x) (выше обменяли x и y обоих концов)
+                if (steep)
+                {
+                    SetPixel(graphics, Color.Black, y, x);
+                }
+                // в противном случае риусем «по-нормальному» точку в (x,y)
+                else
+                {
+                    SetPixel(graphics, Color.Black,x, y);
+                }
+
+                // Поправляем ошибку
+                err = err - dY;
+
+                // Если ошибка отрицательная, y увеличиваем на вертикальный шаг (1 или -1)
+                // и увеличиваем ошибку на шаг по x
+                if (err < 0)
+                {
+                    y += ystep;
+                    err += dX;
+                }
+            }
         }
 
-
-        private static void SetPixel(Graphics g, Color col, int x, int y, int alpha)
+        private static void SetPixel(Graphics g, Color col, int x, int y, int alpha = 127)
         {
             g.FillRectangle(new SolidBrush(Color.FromArgb(alpha, col)), x, y, 1, 1);
         }
 
+        private static void Swap(ref int a, ref int b)
+        {
+            int t = a;
+            a = b;
+            b = t;
+        }
 
         public static void BCircle(Graphics g, Color clr, double x, double y, double radius)
         {

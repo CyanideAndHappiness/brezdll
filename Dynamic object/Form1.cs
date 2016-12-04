@@ -38,7 +38,7 @@ namespace Dynamic_object
             timer.Enabled = true;
 
 
-            
+
 
         }
 
@@ -67,7 +67,7 @@ namespace Dynamic_object
 
         private float _vx = 10f;
         private float _x;
-       
+
 
 
 
@@ -76,14 +76,14 @@ namespace Dynamic_object
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            
+
             if (_x + 120 + 95 > SnowmanBox.Width || _x < 0f)
             {
                 _vx = -_vx;
             }
-            
-             _x += _vx;
-            
+
+            _x += _vx;
+
 
 
 
@@ -109,12 +109,16 @@ namespace Dynamic_object
             Draw.BCircle(_graphics, clr, 103 + _x, 65, 4);
             Draw.BCircle(_graphics, clr, 130 + _x, 65, 4);
 
-          
 
-            _graphics.DrawLine(blackPen, 120 + _x + 45, 155, 120 + _x + 45 + 50, 155 - 50);
-            _graphics.DrawLine(blackPen, 120 + _x - 45, 155, 120 + _x - 45 - 50, 155 - 50);
 
-            _graphics.FillPolygon(orb, new[] { new PointF(120+_x - 6, 75f), new PointF(120 + _x - 6 + 20f, 75f+5f), new PointF(120 +  _x - 6, 75f+10f) });
+            //_graphics.DrawLine(blackPen, 120 + _x + 45, 155, 120 + _x + 45 + 50, 155 - 50);
+            //_graphics.DrawLine(blackPen, 120 + _x - 45, 155, 120 + _x - 45 - 50, 155 - 50);
+
+            Draw.DrawBresenhamLine(_graphics, (int)(120 + _x + 45), (int)(155), (int)(120 + _x + 45 + 50), 155 - 50);
+            Draw.DrawBresenhamLine(_graphics, (int)(120 + _x - 45), 155, (int)(120 + _x - 45 - 50), 155 - 50);
+
+
+            _graphics.FillPolygon(orb, new[] { new PointF(120 + _x - 6, 75f), new PointF(120 + _x - 6 + 20f, 75f + 5f), new PointF(120 + _x - 6, 75f + 10f) });
 
         }
 
