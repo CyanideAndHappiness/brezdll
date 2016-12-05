@@ -16,13 +16,13 @@ namespace Dynamic_object
 
             _snowman = new Snowman();
             _snowmanRenderer = new SnowmanRenderer(SnowmanBox, _snowman);
-            
+
             var timer = new Timer();
             timer.Tick += Timer_Tick;
             timer.Interval = 50;
             timer.Enabled = true;
         }
-        
+
 
 
         private void Timer_Tick(object sender, EventArgs e)

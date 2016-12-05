@@ -11,7 +11,7 @@ namespace Dynamic_object
     /// </summary>
     public class Snowman
     {
-        public Vector Position { get; set; } = new Vector(120f, 20f);
+        public Vector Position { get; set; } = new Vector(120f, 0f);
         public Vector Velocity { get; set; } = new Vector(2.5f, 0f);
         public float ArmLength { get; set; } = 72f;
         public float ArmAngle { get; set; }

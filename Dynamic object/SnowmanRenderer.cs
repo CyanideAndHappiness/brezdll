@@ -51,22 +51,22 @@ namespace Dynamic_object
             _bitmapGraphics.SmoothingMode = SmoothingMode.HighQuality;
             _bitmapGraphics.Clear(Color.Azure);
 
-            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 75, 35);
-            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 155, 45);
-            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 270, 70);
-            Drawer.BCircle(_bitmapGraphics, _blackColor, 103 + _snowman.Position.X, 65, 4);
-            Drawer.BCircle(_bitmapGraphics, _blackColor, 130 + _snowman.Position.X, 65, 4);
+            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 75 + _snowman.Position.Y, 35);
+            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 155 + _snowman.Position.Y, 45);
+            Drawer.BCircle(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 270 + _snowman.Position.Y, 70);
+            Drawer.BCircle(_bitmapGraphics, _blackColor, 103 + _snowman.Position.X, 65 + _snowman.Position.Y, 4);
+            Drawer.BCircle(_bitmapGraphics, _blackColor, 130 + _snowman.Position.X, 65 + _snowman.Position.Y, 4);
             
-            Drawer.BArc(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 75, 25, (float)Math.PI / 4f, (float)Math.PI / 4f * 5f);
+            Drawer.BArc(_bitmapGraphics, _blackColor, 120 + _snowman.Position.X, 75 + _snowman.Position.Y, 25, (float)Math.PI / 4f, (float)Math.PI / 4f * 5f);
 
             Drawer.DrawBresenhamLine(_bitmapGraphics,
-                (int)(120 + _snowman.Position.X + 45), 155,
-                (int)(120 + _snowman.Position.X + 45 + _snowman.ArmLength * Math.Cos(_snowman.ArmAngle)), (int)(155 - _snowman.ArmLength * Math.Sin(_snowman.ArmAngle)));
+                (int)(120 + _snowman.Position.X + 45), 155 + (int)_snowman.Position.Y,
+                (int)(120 + _snowman.Position.X + 45 + _snowman.ArmLength * Math.Cos(_snowman.ArmAngle)), (int)(155 + +_snowman.Position.Y - _snowman.ArmLength * Math.Sin(_snowman.ArmAngle)));
             Drawer.DrawBresenhamLine(_bitmapGraphics,
-                (int)(120 + _snowman.Position.X - 45), 155,
-                (int)(120 + _snowman.Position.X - 45 - 50), 155 - 50);
+                (int)(120 + _snowman.Position.X - 45), (int)(155 + _snowman.Position.Y),
+                (int)(120 + _snowman.Position.X - 45 - 50), (int) (155 - 50 + _snowman.Position.Y));
 
-            _bitmapGraphics.FillPolygon(_orangeBrush, new[] { new PointF(120 + _snowman.Position.X - 6, 75f), new PointF(120 + _snowman.Position.X - 6 + 20f, 75f + 5f), new PointF(120 + _snowman.Position.X - 6, 75f + 10f) });
+            _bitmapGraphics.FillPolygon(_orangeBrush, new[] { new PointF(120 + _snowman.Position.X - 6, 75f + _snowman.Position.Y), new PointF(120 + _snowman.Position.X - 6 + 20f, 75f + 5f + _snowman.Position.Y), new PointF(120 + _snowman.Position.X - 6, 75f + 10f + _snowman.Position.Y) });
 
             e.Graphics.DrawImage(_image, 0f, 0f);
         }
