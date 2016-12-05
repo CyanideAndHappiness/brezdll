@@ -7,8 +7,8 @@
     <ProjectGuid>{93EF42CC-4EA9-43B4-985F-8E2DC0DEECCF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BrezenhCircle</RootNamespace>
-    <AssemblyName>BrezenhCircle</AssemblyName>
+    <RootNamespace>BrezDraw</RootNamespace>
+    <AssemblyName>BrezDraw</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Draw.cs" />
+    <Compile Include="Drawer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

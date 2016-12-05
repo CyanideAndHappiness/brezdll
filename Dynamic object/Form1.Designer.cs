@@ -42,7 +42,6 @@
             this.SnowmanBox.Size = new System.Drawing.Size(704, 350);
             this.SnowmanBox.TabIndex = 0;
             this.SnowmanBox.TabStop = false;
-            this.SnowmanBox.Paint += new System.Windows.Forms.PaintEventHandler(this.SnowmanBox_Paint);
             // 
             // Form1
             // 

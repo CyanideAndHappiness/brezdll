@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrezenhCircle", "BrezenhCircle\BrezenhCircle.csproj", "{93EF42CC-4EA9-43B4-985F-8E2DC0DEECCF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrezDraw", "BrezenhCircle\BrezDraw.csproj", "{93EF42CC-4EA9-43B4-985F-8E2DC0DEECCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dynamic object", "Dynamic object\Dynamic object.csproj", "{616A0B79-290C-443A-8626-43C10B849EE6}"
 EndProject

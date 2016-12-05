@@ -9,7 +9,7 @@ using System.IO;
 
 namespace BrezDraw
 {
-    public static class Draw
+    public static class Drawer
     {
 
         public static void DrawBresenhamLine(Graphics graphics, int x0, int y0, int x1, int y1)
@@ -55,7 +55,7 @@ namespace BrezDraw
                 // в противном случае риусем «по-нормальному» точку в (x,y)
                 else
                 {
-                    SetPixel(graphics, Color.Black,x, y);
+                    SetPixel(graphics, Color.Black, x, y);
                 }
 
                 // Поправляем ошибку
@@ -83,18 +83,18 @@ namespace BrezDraw
             b = t;
         }
 
-        public static void BCircle(Graphics g, Color clr, double x, double y, double radius)
+        public static IEnumerable<Vector> GenerateCirclePoints(float x, float y, float radius)
         {
-
-
-            double xC = 0, yC = radius, gap = 0, delta = (2 - 2 * radius);
+            double xC = 0, yC = radius;
+            double delta = (2 - 2 * radius);
             while (yC >= 0)
             {
-                SetPixel(g, clr, (int)(x + xC), (int)(y + yC), 255);
-                SetPixel(g, clr, (int)(x + xC), (int)(y - yC), 255);
-                SetPixel(g, clr, (int)(x - xC), (int)(y - yC), 255);
-                SetPixel(g, clr, (int)(x - xC), (int)(y + yC), 255);
-                gap = 2 * (delta + yC) - 1;
+                yield return new Vector((int)(x + xC), (int)(y + yC));
+                yield return new Vector((int)(x + xC), (int)(y - yC));
+                yield return new Vector((int)(x - xC), (int)(y - yC));
+                yield return new Vector((int)(x - xC), (int)(y + yC));
+
+                var gap = 2 * (delta + yC) - 1;
                 if (delta < 0 && gap <= 0)
                 {
                     xC++;
@@ -110,6 +110,22 @@ namespace BrezDraw
                 xC++;
                 delta += 2 * (xC - yC);
                 yC--;
+            }
+        }
+
+        public static void BArc(Graphics g, Color clr, float x, float y, float radius, float alpha, float beta)
+        {
+            foreach (var point in GenerateCirclePoints(x, y, radius).Where(p => p.Y - y >= Math.Tan(alpha) * (p.X - x) && -p.Y + y <= Math.Tan(beta) * (p.X - x)))
+            {
+                SetPixel(g, clr, (int)point.X, (int)point.Y, 255);
+            }
+        }
+
+        public static void BCircle(Graphics g, Color clr, float x, float y, float radius)
+        {
+            foreach (var point in GenerateCirclePoints(x, y, radius))
+            {
+                SetPixel(g, clr, (int)point.X, (int)point.Y, 255);
             }
         }
     }
